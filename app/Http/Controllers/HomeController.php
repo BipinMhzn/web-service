@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -19,10 +21,12 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
-        return view('home');
+        $items = Item::orderBy('updated_at', 'desc')->paginate(10);
+
+        return view('home', ['items' => $items]);
     }
 }

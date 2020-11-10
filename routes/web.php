@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes([
+    'verify' => false,
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/cart/add',[
+    'uses' => 'OrderController@addToCart',
+    'as' => 'cart.add'
+]);
+
+Route::get('/cart/rapid/add/{id}',[
+    'uses' => 'OrderController@rapidAdd',
+    'as' => 'cart.rapid.add'
+]);
+
