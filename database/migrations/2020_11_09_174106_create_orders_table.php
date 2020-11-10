@@ -18,12 +18,10 @@ class CreateOrdersTable extends Migration
             $table->string('order_number',30);
             $table->unsignedBigInteger('user_id');
             $table->timestamp('ordered_on')->nullable();
-            $table->decimal('discount_total', 10, 2)->nullable();
             $table->decimal('grand_total', 10, 2)->nullable();
             $table->string('billing_name')->nullable();
             $table->string('contact_no')->nullable();
             $table->string('delivery_address')->nullable();
-            $table->timestamp('expected_delivery_date')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users');

@@ -14,8 +14,18 @@ class CreateOrderedItemsTable extends Migration
     public function up()
     {
         Schema::create('ordered_items', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->bigInteger('order_id')->unsigned();
+            $table->bigInteger('item_id')->unsigned();
+            $table->unsignedInteger('quantity');
+            $table->unsignedInteger('rate');
+            $table->bigInteger('amount')->unsigned();
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('item_id')->references('id')->on('items');
+
         });
     }
 

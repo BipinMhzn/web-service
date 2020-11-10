@@ -18,7 +18,6 @@ class CreateItemsTable extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->unsignedInteger('rate');
-            $table->unsignedDecimal('discount_amount', 10, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

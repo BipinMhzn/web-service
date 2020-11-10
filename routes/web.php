@@ -23,3 +23,13 @@ Auth::routes([
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/cart/add',[
+    'uses' => 'OrderController@addToCart',
+    'as' => 'cart.add'
+]);
+
+Route::get('/cart/rapid/add/{id}',[
+    'uses' => 'OrderController@rapidAdd',
+    'as' => 'cart.rapid.add'
+]);
+
